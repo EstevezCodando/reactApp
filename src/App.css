@@ -28,6 +28,12 @@ git.App {
   color: #61dafb;
 }
 
+.container {
+  background-color: aquamarine;
+  border: 1px solid black;
+  margin: 5px auto;
+  padding: 5px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
