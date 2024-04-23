@@ -8,13 +8,13 @@ function App() {
       <h3>Componente Basico</h3>
       <div className="container">
         <p>
-          <Avaliador quantidade="5" avaliacao="3" /> Homem Aranha
+          <Avaliador quantidade={5} avaliacao={5} titulo="Homem Aranha" />
         </p>
         <p>
-          <Avaliador quantidade="5" avaliacao="2" /> Barbie
+          <Avaliador quantidade={5} avaliacao={5} titulo="Barbie" />
         </p>
         <p>
-          <Avaliador quantidade="5" avaliacao="4" /> Batman
+          <Avaliador quantidade={5} avaliacao={5} titulo="Batman" />
         </p>
       </div>
     </div>
