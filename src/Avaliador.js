@@ -1,29 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
 export default function Avaliador({ avaliacao, quantidade, titulo }) {
-  const [selecionadas, setSelecionadas] = useState(avaliacao);
+  const chaveLocalStorage = `avaliacao-${titulo}`;
+  const avaliacaoInicial = localStorage.getItem(chaveLocalStorage) || avaliacao;
 
-  function handleClick() {
-    if (selecionadas >= quantidade) {
-      setSelecionadas(0);
-    } else {
-      setSelecionadas(selecionadas + 1);
-    }
+  const [selecionadas, setSelecionadas] = useState(
+    parseInt(avaliacaoInicial, 10)
+  );
+
+  useEffect(() => {
+    localStorage.setItem(chaveLocalStorage, selecionadas);
+  }, [selecionadas]);
+
+  function handleClick(novaAvaliacao) {
+    setSelecionadas(novaAvaliacao);
   }
 
   function geraAvaliacao() {
-    const avaliacao = [];
-
-    for (let i = 0; i < quantidade; i++) {
-      if (i < selecionadas) {
-        avaliacao.push(<FaStar color="red" onClick={handleClick} />);
-      } else {
-        avaliacao.push(<FaStar color="grey" onClick={handleClick} />);
-      }
+    const estrelas = [];
+    for (let i = 1; i <= quantidade; i++) {
+      estrelas.push(
+        <FaStar
+          key={i}
+          color={i <= selecionadas ? "red" : "grey"}
+          onClick={() => handleClick(i)}
+        />
+      );
     }
-    return avaliacao;
+    return estrelas;
   }
+
   return (
     <div style={{ margin: "5px", padding: "10px" }}>
       {geraAvaliacao()} {titulo}
